@@ -190,90 +190,192 @@
   .amp-divider::before{ left:calc(50% - 96px); }
   .amp-divider::after{  right:calc(50% - 96px); }
 
-  /* ───────── Q & A ───────── */
-  .qa-head{
-    text-align:center;
-    margin:56px 0 30px;
-  }
-  .qa-head .en{
-    font-family:"Cormorant Garamond", serif;
-    font-size:20px;
-    letter-spacing:.4em;
-    text-indent:.4em;
-    text-transform:uppercase;
-    color:var(--ink);
-  }
-  .qa-head .jp{
-    font-family:"Noto Serif JP", serif;
-    font-size:12px;
-    letter-spacing:.24em;
-    text-indent:.24em;
-    color:var(--gray);
-    margin-top:8px;
-  }
+  /* ═════════ Q & A セクション ═════════ */
+  .qa-section{ margin-top:66px; }
 
-  .qa{ margin-top:26px; }
-  .qa .q{
-    font-family:"Noto Serif JP", serif;
-    font-size:14px;
-    letter-spacing:.06em;
+  /* 見出し */
+  .qa-head{ text-align:center; margin-bottom:34px; }
+  .qa-head .script-row{
+    display:flex; align-items:center; justify-content:center; gap:14px;
+  }
+  .qa-head .script-row svg{ width:30px; height:18px; color:var(--gray-fade); }
+  .qa-head .script-row svg.flip{ transform:scaleX(-1); }
+  .qa-head .script{
+    font-family:"Pinyon Script", cursive;
+    font-size:31px;
+    line-height:1;
     color:var(--ink);
-    text-align:center;
-    font-weight:500;
-    margin-bottom:14px;
   }
-  .qa .q::before{
-    content:"Q.";
-    font-family:"Cormorant Garamond", serif;
-    font-style:italic;
-    color:var(--gray-fade);
-    margin-right:.5em;
-  }
-  .answers{
-    display:flex;
-    gap:18px;
-  }
-  .ans{
-    flex:1;
-    text-align:center;
-    font-size:12.5px;
-    line-height:1.85;
+  .qa-head .lead{
+    font-family:"Noto Serif JP", serif;
+    font-size:14.5px;
+    letter-spacing:.06em;
     color:var(--ink-soft);
+    margin-top:14px;
     font-weight:300;
   }
-  .ans .who{
+
+  /* 概要（イラスト＋夫/妻） */
+  .illust{
+    width:188px;
+    margin:0 auto 24px;
+    aspect-ratio:1 / 1;
+    background:#FFFFFF;
+    overflow:hidden;
+  }
+  .illust img{
+    width:100%; height:100%;
+    object-fit:contain;
     display:block;
-    font-family:"Cormorant Garamond", serif;
-    font-size:11px;
-    letter-spacing:.28em;
-    text-indent:.28em;
-    text-transform:uppercase;
-    color:var(--gray);
-    margin-bottom:7px;
+    filter:grayscale(100%) contrast(1.04);   /* モノクロに統一 */
   }
 
-  /* ───────── フッター / ページ間リンク ───────── */
-  .foot{
-    text-align:center;
-    margin-top:60px;
-  }
-  .foot a{
-    display:inline-block;
-    font-family:"Cormorant Garamond", serif;
-    font-size:13px;
-    letter-spacing:.24em;
-    text-indent:.24em;
-    text-transform:uppercase;
+  .sum-cols{ display:flex; gap:16px; }
+  .sum-col{ flex:1; text-align:center; }
+  .sum-col .eyebrow{
+    font-family:"Noto Serif JP", serif;
+    font-size:11px;
+    letter-spacing:.18em;
     color:var(--gray);
-    text-decoration:none;
-    border-bottom:1px solid var(--hairline);
-    padding-bottom:4px;
-    transition:color .25s ease, border-color .25s ease;
+    margin-bottom:4px;
   }
-  .foot a:hover,
-  .foot a:focus-visible{
+  .sum-col .eyebrow::before{ content:"\\ "; color:var(--gray-fade); }
+  .sum-col .eyebrow::after{  content:" /"; color:var(--gray-fade); }
+  .sum-col .who{
+    font-family:"Noto Serif JP", serif;
+    font-size:24px;
+    font-weight:400;
     color:var(--ink);
-    border-color:var(--ink);
+    line-height:1;
+  }
+  .sum-col .mbti{
+    display:inline-block;
+    margin-top:10px;
+    padding:4px 14px;
+    border:1px solid var(--ink-soft);
+    border-radius:999px;
+    font-family:"Cormorant Garamond", serif;
+    font-size:12px;
+    letter-spacing:.18em;
+    text-indent:.18em;
+    color:var(--ink-soft);
+  }
+  .sum-col .traits{
+    list-style:none;
+    margin:16px auto 0;
+    max-width:160px;
+    text-align:left;
+  }
+  .sum-col .traits li{
+    position:relative;
+    padding-left:18px;
+    font-size:12px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    font-weight:300;
+    margin-bottom:9px;
+  }
+  .sum-col .traits li::before{
+    content:"";
+    position:absolute;
+    left:2px; top:6px;
+    width:5px; height:8px;
+    border:solid var(--gray);
+    border-width:0 1.4px 1.4px 0;
+    transform:rotate(40deg);
+  }
+
+  /* 区切り */
+  .qa-rule{
+    width:40px; height:1px;
+    background:var(--hairline);
+    margin:38px auto 30px;
+  }
+
+  /* Q&Aカード */
+  .qa-cards{ display:flex; flex-direction:column; gap:14px; }
+  .qa-card{
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:18px 16px;
+    background:var(--paper);
+  }
+  .qa-card .q-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .q-badge{
+    width:38px; height:38px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"Cormorant Garamond", serif;
+    font-size:14px;
+    letter-spacing:.04em;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .q-text{
+    flex:1;
+    font-family:"Noto Serif JP", serif;
+    font-size:13.5px;
+    line-height:1.5;
+    font-weight:500;
+    color:var(--ink);
+  }
+  .q-icon{ flex-shrink:0; width:24px; height:24px; color:var(--stroke); }
+
+  .ans-row{
+    display:flex;
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid var(--hairline);
+  }
+  .ans-col{ flex:1; padding:0 11px; }
+  .ans-col + .ans-col{ border-left:1px dotted var(--hairline); }
+  .ans-head{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
+    margin-bottom:9px;
+  }
+  .ans-avatar{
+    width:30px; height:30px;
+    border:1px solid var(--hairline);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--stroke);
+    overflow:hidden;
+  }
+  .ans-avatar svg{ width:22px; height:22px; }
+  .ans-name{
+    font-family:"Noto Serif JP", serif;
+    font-size:11px;
+    letter-spacing:.08em;
+    color:var(--gray);
+  }
+  .ans-text{
+    font-size:11.5px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    font-weight:300;
+    text-align:left;
+  }
+
+  /* 締めの言葉 */
+  .qa-close{
+    text-align:center;
+    margin-top:42px;
+  }
+  .qa-close .sprig{ width:34px; height:16px; color:var(--gray-fade); margin:0 auto 14px; display:block; }
+  .qa-close p{
+    font-family:"Noto Serif JP", serif;
+    font-size:13px;
+    line-height:2;
+    color:var(--ink-soft);
+    font-weight:300;
   }
 
   /* ───────── 登場アニメーション ───────── */
@@ -325,6 +427,7 @@
         <div class="fact"><dt>誕生日</dt><dd>1996. 11. 07</dd></div>
         <div class="fact"><dt>出身地</dt><dd>東京都</dd></div>
         <div class="fact"><dt>趣味</dt><dd>アニソンライブ・ゲーム</dd></div>
+        <div class="fact"><dt>MBTI</dt><dd>ENFP(広報運動家)</dd></div>
       </dl>
 
       <p class="message">
@@ -355,6 +458,7 @@
         <div class="fact"><dt>誕生日</dt><dd>1997. 01. 08</dd></div>
         <div class="fact"><dt>出身地</dt><dd>埼玉県</dd></div>
         <div class="fact"><dt>趣味</dt><dd>ジャニーズ・カフェ巡り</dd></div>
+        <div class="fact"><dt>MBTI</dt><dd>ENFJ(主人公)</dd></div>
       </dl>
 
       <p class="message">
@@ -362,40 +466,214 @@
       </p>
     </section>
 
-    <!-- Q & A -->
-    <div class="qa-head reveal">
-      <div class="en">Q &amp; A</div>
-      <div class="jp">ふたりのこと</div>
-    </div>
+    <!-- ═══════ Q & A セクション ═══════ -->
+    <section class="qa-section">
 
-    <div class="qa reveal">
-      <div class="q">第一印象は？</div>
-      <div class="answers">
-        <div class="ans"><span class="who">Groom</span>明るくて話しやすい人</div>
-        <div class="ans"><span class="who">Bride</span>落ち着いていて優しそう</div>
+      <!-- 見出し -->
+      <div class="qa-head reveal">
+        <div class="script-row">
+          <svg class="flip" viewBox="0 0 30 18" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 15 C9 13 20 9 29 2"/>
+            <path d="M8 12.5 C7 10.5 7.5 8.8 9.5 8"/>
+            <path d="M14 10 C13 8 13.5 6.3 15.5 5.5"/>
+            <path d="M20 7 C19 5 19.5 3.3 21.5 2.5"/>
+            <path d="M11 11.3 C11.5 9.5 13 8.8 14.8 9.2"/>
+            <path d="M17 8.6 C17.5 6.8 19 6.1 20.8 6.5"/>
+          </svg>
+          <div class="script">our profile Q &amp; A</div>
+          <svg viewBox="0 0 30 18" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 15 C9 13 20 9 29 2"/>
+            <path d="M8 12.5 C7 10.5 7.5 8.8 9.5 8"/>
+            <path d="M14 10 C13 8 13.5 6.3 15.5 5.5"/>
+            <path d="M20 7 C19 5 19.5 3.3 21.5 2.5"/>
+            <path d="M11 11.3 C11.5 9.5 13 8.8 14.8 9.2"/>
+            <path d="M17 8.6 C17.5 6.8 19 6.1 20.8 6.5"/>
+          </svg>
+        </div>
+        <div class="lead">私たちのこと、3つのQ&amp;Aでご紹介します</div>
       </div>
-    </div>
 
-    <div class="qa reveal">
-      <div class="q">お互いの好きなところ</div>
-      <div class="answers">
-        <div class="ans"><span class="who">Groom</span>いつも前向きなところ</div>
-        <div class="ans"><span class="who">Bride</span>誠実で頼れるところ</div>
+      <!-- イラスト（モノクロ） -->
+      <div class="illust reveal">
+        <img src="footer.jpg" alt="ふたりのイラスト">
       </div>
-    </div>
 
-    <div class="qa reveal">
-      <div class="q">休日の過ごし方</div>
-      <div class="answers">
-        <div class="ans"><span class="who">Groom</span>ふたりで映画を観ること</div>
-        <div class="ans"><span class="who">Bride</span>近所を散歩すること</div>
+      <!-- 夫・妻の概要 -->
+      <div class="sum-cols reveal">
+        <div class="sum-col">
+          <div class="eyebrow">運動家</div>
+          <div class="who">夫</div>
+          <div class="mbti">ENFP-A</div>
+          <ul class="traits">
+            <li>自由で好奇心旺盛</li>
+            <li>アイデアがひらめくとすぐ行動！</li>
+            <li>人と話すことが大好き</li>
+          </ul>
+        </div>
+        <div class="sum-col">
+          <div class="eyebrow">主人公</div>
+          <div class="who">妻</div>
+          <div class="mbti">ENFJ-A</div>
+          <ul class="traits">
+            <li>人の気持ちに寄り添う聞き上手</li>
+            <li>みんなを笑顔にするのが得意！</li>
+            <li>計画を立ててサポートするのが好き</li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <!-- タイムラインページへのリンク -->
-    <footer class="foot reveal">
-      <a href="index.html">View Timeline</a>
-    </footer>
+      <div class="qa-rule reveal"></div>
+
+      <!-- Q&Aカード -->
+      <div class="qa-cards">
+
+        <!-- Q1 -->
+        <div class="qa-card reveal">
+          <div class="q-row">
+            <div class="q-badge">Q1</div>
+            <div class="q-text">デートの計画を立てるのは？</div>
+            <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="5" width="16" height="15" rx="2"/>
+              <path d="M4 9.5 H20"/><path d="M8.5 3 V6"/><path d="M15.5 3 V6"/>
+              <path d="M12 17.2 C10 15.5 9.4 14.4 10 13.6 C10.6 12.8 11.6 13.2 12 14 C12.4 13.2 13.4 12.8 14 13.6 C14.6 14.4 14 15.5 12 17.2 Z"/>
+            </svg>
+          </div>
+          <div class="ans-row">
+            <div class="ans-col">
+              <div class="ans-head">
+                <div class="ans-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5.5 11 C5.5 5.5 8.5 3 12 3 C15.5 3 18.5 5.5 18.5 11"/>
+                    <path d="M7 10.5 C7 15 9 18 12 18 C15 18 17 15 17 10.5"/>
+                    <path d="M9.3 11.2 h1.4"/><path d="M13.3 11.2 h1.4"/>
+                    <path d="M10.4 14.2 c.9 .7 2.3 .7 3.2 0"/>
+                  </svg>
+                </div>
+                <div class="ans-name">夫（運動家）</div>
+              </div>
+              <div class="ans-text">「行きたい場所見つけた！よし、行こう！」と思いつきで計画します！</div>
+            </div>
+            <div class="ans-col">
+              <div class="ans-head">
+                <div class="ans-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 11 C6 5.5 8.7 3.2 12 3.2 C15.3 3.2 18 5.5 18 11 L18 18.5"/>
+                    <path d="M6 11 L6 18.5"/>
+                    <path d="M8 11 C8 15.2 9.6 18 12 18 C14.4 18 16 15.2 16 11"/>
+                    <path d="M10.6 4 L8.8 2.8 8.8 5.2 Z"/><path d="M13.4 4 L15.2 2.8 15.2 5.2 Z"/>
+                    <path d="M9.4 11.4 h1.2"/><path d="M13.4 11.4 h1.2"/>
+                    <path d="M10.6 14 c.9 .6 2.1 .6 2.9 0"/>
+                  </svg>
+                </div>
+                <div class="ans-name">妻（主人公）</div>
+              </div>
+              <div class="ans-text">「いいね〜！」と乗っかって、細かいことはサポート＆調整担当です</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qa-card reveal">
+          <div class="q-row">
+            <div class="q-badge">Q2</div>
+            <div class="q-text">ケンカしたら先に謝るのは？</div>
+            <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20 C5.5 14.5 3.5 11 5 8.2 C6.2 6 9.4 6.2 11 8.6 C11.4 9.2 12.6 9.2 13 8.6 C14.6 6.2 17.8 6 19 8.2 C20.5 11 18.5 14.5 12 20 Z"/>
+              <path d="M19.5 4 l.6 1.5 1.5 .6 -1.5 .6 -.6 1.5 -.6 -1.5 -1.5 -.6 1.5 -.6 z"/>
+            </svg>
+          </div>
+          <div class="ans-row">
+            <div class="ans-col">
+              <div class="ans-head">
+                <div class="ans-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5.5 11 C5.5 5.5 8.5 3 12 3 C15.5 3 18.5 5.5 18.5 11"/>
+                    <path d="M7 10.5 C7 15 9 18 12 18 C15 18 17 15 17 10.5"/>
+                    <path d="M9.3 11.2 h1.4"/><path d="M13.3 11.2 h1.4"/>
+                    <path d="M10.4 14.2 c.9 .7 2.3 .7 3.2 0"/>
+                  </svg>
+                </div>
+                <div class="ans-name">夫（運動家）</div>
+              </div>
+              <div class="ans-text">その場ですぐ気持ちを伝えたくなって、先に謝っちゃいます！</div>
+            </div>
+            <div class="ans-col">
+              <div class="ans-head">
+                <div class="ans-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 11 C6 5.5 8.7 3.2 12 3.2 C15.3 3.2 18 5.5 18 11 L18 18.5"/>
+                    <path d="M6 11 L6 18.5"/>
+                    <path d="M8 11 C8 15.2 9.6 18 12 18 C14.4 18 16 15.2 16 11"/>
+                    <path d="M10.6 4 L8.8 2.8 8.8 5.2 Z"/><path d="M13.4 4 L15.2 2.8 15.2 5.2 Z"/>
+                    <path d="M9.4 11.4 h1.2"/><path d="M13.4 11.4 h1.2"/>
+                    <path d="M10.6 14 c.9 .6 2.1 .6 2.9 0"/>
+                  </svg>
+                </div>
+                <div class="ans-name">妻（主人公）</div>
+              </div>
+              <div class="ans-text">少し時間をおいて冷静になってから、しっかり話をします</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qa-card reveal">
+          <div class="q-row">
+            <div class="q-badge">Q3</div>
+            <div class="q-text">生まれ変わるなら相手のMBTIになる？</div>
+            <svg class="q-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3 C12.6 8.5 13.5 9.4 19 10 C13.5 10.6 12.6 11.5 12 17 C11.4 11.5 10.5 10.6 5 10 C10.5 9.4 11.4 8.5 12 3 Z"/>
+              <path d="M18.5 15 l.5 1.3 1.3 .5 -1.3 .5 -.5 1.3 -.5 -1.3 -1.3 -.5 1.3 -.5 z"/>
+            </svg>
+          </div>
+          <div class="ans-row">
+            <div class="ans-col">
+              <div class="ans-head">
+                <div class="ans-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5.5 11 C5.5 5.5 8.5 3 12 3 C15.5 3 18.5 5.5 18.5 11"/>
+                    <path d="M7 10.5 C7 15 9 18 12 18 C15 18 17 15 17 10.5"/>
+                    <path d="M9.3 11.2 h1.4"/><path d="M13.3 11.2 h1.4"/>
+                    <path d="M10.4 14.2 c.9 .7 2.3 .7 3.2 0"/>
+                  </svg>
+                </div>
+                <div class="ans-name">夫（運動家）</div>
+              </div>
+              <div class="ans-text">なってみたい！色んな人の気持ちを理解して支えられる人になりたい！</div>
+            </div>
+            <div class="ans-col">
+              <div class="ans-head">
+                <div class="ans-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 11 C6 5.5 8.7 3.2 12 3.2 C15.3 3.2 18 5.5 18 11 L18 18.5"/>
+                    <path d="M6 11 L6 18.5"/>
+                    <path d="M8 11 C8 15.2 9.6 18 12 18 C14.4 18 16 15.2 16 11"/>
+                    <path d="M10.6 4 L8.8 2.8 8.8 5.2 Z"/><path d="M13.4 4 L15.2 2.8 15.2 5.2 Z"/>
+                    <path d="M9.4 11.4 h1.2"/><path d="M13.4 11.4 h1.2"/>
+                    <path d="M10.6 14 c.9 .6 2.1 .6 2.9 0"/>
+                  </svg>
+                </div>
+                <div class="ans-name">妻（主人公）</div>
+              </div>
+              <div class="ans-text">今のままで十分かな。お互いの良さを活かして支え合えたら最高です！</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 締めの言葉 -->
+      <div class="qa-close reveal">
+        <svg class="sprig" viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 14 C17 9 19 5 24 2"/>
+          <path d="M17 14 C17 9 15 5 10 2"/>
+          <path d="M20 8 C19.5 6 20.5 4.5 22.5 4"/>
+          <path d="M14 8 C14.5 6 13.5 4.5 11.5 4"/>
+        </svg>
+        <p>正反対に見えて、意外とちょうどいい。<br>笑顔あふれる家庭を築いていきます。<br>これからも温かく見守っていただけたら嬉しいです。</p>
+      </div>
+
+    </section>
 
   </main>
 
