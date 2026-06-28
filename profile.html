@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:    #FCFCFA;
+    --surround: #EFEFEC;
+    --ink:      #1C1C1A;
+    --ink-soft: #4A4A47;
+    --gray:     #8C8C88;
+    --gray-fade:#B7B7B2;
+    --hairline: #D9D9D4;
+    --stroke:   #2A2A28;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    background: var(--surround);
+    color: var(--ink);
+    font-family: "Noto Serif JP", serif;
+    font-weight: 300;
+    line-height: 1.6;
+    display:flex;
+    justify-content:center;
+    min-height:100vh;
+  }
+
+  .invitation{
+    width:100%;
+    max-width:440px;
+    background: var(--paper);
+    padding: 72px 34px 84px;
+    position:relative;
+    overflow:hidden;
+  }
+  .invitation::before,
+  .invitation::after{
+    content:"";
+    position:absolute;
+    left:50%; transform:translateX(-50%);
+    width:34px; height:1px;
+    background: var(--hairline);
+  }
+  .invitation::before{ top:30px; }
+  .invitation::after{ bottom:38px; }
+
+  /* ───────── ヘッダー ───────── */
+  .head{ text-align:center; margin-bottom:56px; }
+  .head .title{
+    font-family:"Pinyon Script", cursive;
+    font-size:56px;
+    line-height:1;
+    color:var(--ink);
+  }
+  .head .rule{
+    width:46px; height:1px;
+    background:var(--ink);
+    margin:24px auto 20px;
+    opacity:.55;
+  }
+  .head .names{
+    font-family:"Cormorant Garamond", serif;
+    font-size:15px;
+    letter-spacing:.34em;
+    text-indent:.34em;
+    color:var(--gray);
+    text-transform:uppercase;
+  }
+  .head .names .amp{ font-style:italic; margin:0 .25em; color:var(--gray-fade); }
+
+  /* ───────── プロフィール ───────── */
+  .person{ text-align:center; }
+  .person + .person{ margin-top:18px; }
+
+  .photo{
+    width:142px; height:142px;
+    border-radius:50%;
+    border:1px solid var(--hairline);
+    margin:0 auto 22px;
+    overflow:hidden;
+    position:relative;
+    background:var(--paper);
+  }
+  .photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .photo .ph-fallback{
+    position:absolute; inset:0;
+    display:none;               /* 写真が無いときだけ表示 */
+    align-items:flex-end;
+    justify-content:center;
+  }
+  .photo .ph-fallback svg{
+    width:96px; height:96px;
+    color:var(--gray-fade);
+  }
+
+  .role{
+    font-family:"Cormorant Garamond", serif;
+    font-size:12px;
+    letter-spacing:.36em;
+    text-indent:.36em;
+    text-transform:uppercase;
+    color:var(--gray);
+    font-weight:500;
+    margin-bottom:8px;
+  }
+  .name-en{
+    font-family:"Cormorant Garamond", serif;
+    font-size:30px;
+    letter-spacing:.06em;
+    color:var(--ink);
+    line-height:1.05;
+  }
+  .name-jp{
+    font-family:"Noto Serif JP", serif;
+    font-size:15px;
+    letter-spacing:.26em;
+    text-indent:.26em;
+    color:var(--ink-soft);
+    margin-top:7px;
+  }
+
+  .facts{
+    max-width:228px;
+    margin:22px auto 0;
+  }
+  .fact{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:14px;
+    padding:9px 2px;
+    border-top:1px solid var(--hairline);
+    font-size:13px;
+  }
+  .fact:last-child{ border-bottom:1px solid var(--hairline); }
+  .fact dt{
+    color:var(--gray);
+    letter-spacing:.16em;
+    white-space:nowrap;
+    font-weight:300;
+  }
+  .fact dd{
+    color:var(--ink);
+    text-align:right;
+    letter-spacing:.04em;
+    font-weight:300;
+  }
+
+  .message{
+    font-size:13.5px;
+    line-height:1.95;
+    color:var(--ink-soft);
+    margin:20px auto 0;
+    max-width:260px;
+    font-weight:300;
+  }
+
+  /* ───────── 中央の連結マーク ───────── */
+  .amp-divider{
+    text-align:center;
+    margin:40px 0;
+    font-family:"Cormorant Garamond", serif;
+    font-style:italic;
+    font-size:30px;
+    color:var(--gray-fade);
+    line-height:1;
+    position:relative;
+  }
+  .amp-divider::before,
+  .amp-divider::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:64px; height:1px;
+    background:var(--hairline);
+  }
+  .amp-divider::before{ left:calc(50% - 96px); }
+  .amp-divider::after{  right:calc(50% - 96px); }
+
+  /* ───────── Q & A ───────── */
+  .qa-head{
+    text-align:center;
+    margin:56px 0 30px;
+  }
+  .qa-head .en{
+    font-family:"Cormorant Garamond", serif;
+    font-size:20px;
+    letter-spacing:.4em;
+    text-indent:.4em;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+  .qa-head .jp{
+    font-family:"Noto Serif JP", serif;
+    font-size:12px;
+    letter-spacing:.24em;
+    text-indent:.24em;
+    color:var(--gray);
+    margin-top:8px;
+  }
+
+  .qa{ margin-top:26px; }
+  .qa .q{
+    font-family:"Noto Serif JP", serif;
+    font-size:14px;
+    letter-spacing:.06em;
+    color:var(--ink);
+    text-align:center;
+    font-weight:500;
+    margin-bottom:14px;
+  }
+  .qa .q::before{
+    content:"Q.";
+    font-family:"Cormorant Garamond", serif;
+    font-style:italic;
+    color:var(--gray-fade);
+    margin-right:.5em;
+  }
+  .answers{
+    display:flex;
+    gap:18px;
+  }
+  .ans{
+    flex:1;
+    text-align:center;
+    font-size:12.5px;
+    line-height:1.85;
+    color:var(--ink-soft);
+    font-weight:300;
+  }
+  .ans .who{
+    display:block;
+    font-family:"Cormorant Garamond", serif;
+    font-size:11px;
+    letter-spacing:.28em;
+    text-indent:.28em;
+    text-transform:uppercase;
+    color:var(--gray);
+    margin-bottom:7px;
+  }
+
+  /* ───────── フッター / ページ間リンク ───────── */
+  .foot{
+    text-align:center;
+    margin-top:60px;
+  }
+  .foot a{
+    display:inline-block;
+    font-family:"Cormorant Garamond", serif;
+    font-size:13px;
+    letter-spacing:.24em;
+    text-indent:.24em;
+    text-transform:uppercase;
+    color:var(--gray);
+    text-decoration:none;
+    border-bottom:1px solid var(--hairline);
+    padding-bottom:4px;
+    transition:color .25s ease, border-color .25s ease;
+  }
+  .foot a:hover,
+  .foot a:focus-visible{
+    color:var(--ink);
+    border-color:var(--ink);
+  }
+
+  /* ───────── 登場アニメーション ───────── */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .9s ease, transform .9s ease;
+  }
+  .reveal.is-in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  @media (max-width:380px){
+    .invitation{ padding:60px 26px 74px; }
+    .head .title{ font-size:48px; }
+  }
+</style>
+</head>
+<body>
+  <main class="invitation">
+
+    <!-- ヘッダー -->
+    <header class="head reveal">
+      <div class="title">Profile</div>
+      <div class="rule"></div>
+      <!-- ↓ お二人のお名前 -->
+      <div class="names">Fumitaka<span class="amp">&amp;</span>Riho</div>
+    </header>
+
+    <!-- 新郎 -->
+    <section class="person reveal">
+      <div class="photo">
+        <!-- 写真を使う場合：src を実際のファイル名に。無ければ下のイラストが出ます -->
+        <img src="groom.jpg" alt="新郎"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="ph-fallback">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="18" r="7"/>
+            <path d="M11 42 C11 32 17 28 24 28 C31 28 37 32 37 42"/>
+          </svg>
+        </div>
+      </div>
+      <div class="role">Groom</div>
+      <div class="name-en">Fumitaka</div>
+      <div class="name-jp">村瀬 布弥尚</div>
+
+      <dl class="facts">
+        <div class="fact"><dt>誕生日</dt><dd>1996. 11. 07</dd></div>
+        <div class="fact"><dt>出身地</dt><dd>東京都</dd></div>
+        <div class="fact"><dt>趣味</dt><dd>アニソンライブ・ゲーム</dd></div>
+      </dl>
+
+      <p class="message">
+        いつも笑顔を絶やさない彼女に支えられています。これからもふたりで、穏やかであたたかい家庭を築いていきます。
+      </p>
+    </section>
+
+    <!-- 中央マーク -->
+    <div class="amp-divider reveal">&amp;</div>
+
+    <!-- 新婦 -->
+    <section class="person reveal">
+      <div class="photo">
+        <img src="bride.jpg" alt="新婦"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="ph-fallback">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="18" r="7"/>
+            <path d="M11 42 C11 32 17 28 24 28 C31 28 37 32 37 42"/>
+          </svg>
+        </div>
+      </div>
+      <div class="role">Bride</div>
+      <div class="name-en">Riho</div>
+      <div class="name-jp">浪江莉帆 </div>
+
+      <dl class="facts">
+        <div class="fact"><dt>誕生日</dt><dd>1997. 01. 08</dd></div>
+        <div class="fact"><dt>出身地</dt><dd>埼玉県</dd></div>
+        <div class="fact"><dt>趣味</dt><dd>ジャニーズ・カフェ巡り</dd></div>
+      </dl>
+
+      <p class="message">
+        頼りがいのある彼と過ごす毎日が、わたしの宝物です。皆さまに見守っていただきながら、ふたりらしく歩んでいきます。
+      </p>
+    </section>
+
+    <!-- Q & A -->
+    <div class="qa-head reveal">
+      <div class="en">Q &amp; A</div>
+      <div class="jp">ふたりのこと</div>
+    </div>
+
+    <div class="qa reveal">
+      <div class="q">第一印象は？</div>
+      <div class="answers">
+        <div class="ans"><span class="who">Groom</span>明るくて話しやすい人</div>
+        <div class="ans"><span class="who">Bride</span>落ち着いていて優しそう</div>
+      </div>
+    </div>
+
+    <div class="qa reveal">
+      <div class="q">お互いの好きなところ</div>
+      <div class="answers">
+        <div class="ans"><span class="who">Groom</span>いつも前向きなところ</div>
+        <div class="ans"><span class="who">Bride</span>誠実で頼れるところ</div>
+      </div>
+    </div>
+
+    <div class="qa reveal">
+      <div class="q">休日の過ごし方</div>
+      <div class="answers">
+        <div class="ans"><span class="who">Groom</span>ふたりで映画を観ること</div>
+        <div class="ans"><span class="who">Bride</span>近所を散歩すること</div>
+      </div>
+    </div>
+
+    <!-- タイムラインページへのリンク -->
+    <footer class="foot reveal">
+      <a href="index.html">View Timeline</a>
+    </footer>
+
+  </main>
+
+  <script>
+    const items = document.querySelectorAll('.reveal');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      items.forEach(el => el.classList.add('is-in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18 });
+      items.forEach(el => io.observe(el));
+    }
+  </script>
+</body>
+</html>
